@@ -1,0 +1,63 @@
+<!doctype html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>HTML TO IMAGE</title>
+        <script src="html2canvas.js"></script> 
+        <script type="text/javascript">
+
+            function downloadimage() {
+                var container = document.getElementById("htmltoimage");
+                html2canvas(container).then(function (canvas) {
+
+                    var link = document.createElement("a");
+                    document.body.appendChild(link);
+                    link.download = "html_image.jpg";
+                    link.href = canvas.toDataURL();
+                    link.target = '_blank';
+                    link.click();
+                    
+                });
+            }
+
+        </script>
+
+
+        <style>
+            #htmltoimage {
+                width: 65%;
+                margin: auto;
+            }
+        </style>
+
+    </head>
+
+    <body style="text-align:center">
+
+        <div id="htmltoimage" style="background-color: skyblue;">
+            <p><img id="output" width="200" /></p>
+            <h1>Welcome To Rajtechnology</h1>
+            <h2 style="color:red">Subscribe</h2>
+            <h3 style="color:blue">Like</h3>
+            <h4 style="color:Green">Share</h4>
+            <h4 style="color:Red">Comment</h4>
+        </div>
+        <button onclick="downloadimage()" class="clickbtn">Click To Download Image</button>
+
+
+
+        <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+        <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+        
+        
+        <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+        </script>
+    </body>
+
+    </html>
